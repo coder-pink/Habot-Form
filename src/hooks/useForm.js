@@ -6,6 +6,18 @@ import {
   validateStep3
 } from '../utils/validators';
 
+const defaultFormData = {
+  age: '',
+  diagnosis: '',
+  schoolType: '',
+  supportTypes: [],
+  frequency: '',
+  requirements: '',
+  parentName: '',
+  email: '',
+  phone: '',
+};
+
 export const useForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [submitted, setSubmitted] = useState(() => {
@@ -14,17 +26,7 @@ export const useForm = () => {
 
   const [formData, setFormData] = useState(() => {
     const saved = localStorage.getItem('habotForm');
-    return saved ? JSON.parse(saved) : {
-      age: '',
-      diagnosis: '',
-      schoolType: '',
-      supportTypes: [],
-      frequency: '',
-      requirements: '',
-      parentName: '',
-      email: '',
-      phone: '',
-    };
+    return saved ? JSON.parse(saved) :  defaultFormData;
   });
 
   const [errors, setErrors] = useState({});
@@ -71,6 +73,15 @@ export const useForm = () => {
     }
   };
 
+   const resetForm = () => {
+    setFormData(defaultFormData);
+    setErrors({});
+    setCurrentStep(0);
+    setSubmitted(false);
+    localStorage.removeItem('habotForm');
+    localStorage.removeItem('habotFormSubmitted');
+  };
+
   return {
     currentStep,
     formData,
@@ -80,5 +91,6 @@ export const useForm = () => {
     onNext,
     onBack,
     onSubmit,
+    resetForm,
   };
 };
