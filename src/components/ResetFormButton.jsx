@@ -1,15 +1,10 @@
+import React from 'react';
 
 function ResetFormButton({ onReset, className = '' }) {
-  const handleReset = () => {
-    localStorage.removeItem('habotForm');
-    localStorage.removeItem('habotFormSubmitted');
-    onReset();
-  };
-
   return (
     <button
-      onClick={handleReset}
-      className={`px-4 py-2  bg-gray-300 text-gray-800 font-bold rounded shadow hover:bg-gray-300  transition ${className}`}
+      onClick={onReset}
+      className={`w-full px-4 py-2 bg-gray-300 text-gray-800 font-semibold rounded-md shadow hover:bg-gray-400 transition duration-200 ${className}`}
     >
       Reset Form
     </button>

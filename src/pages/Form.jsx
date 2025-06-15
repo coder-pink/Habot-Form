@@ -16,7 +16,8 @@ function Form() {
     handleChange,
     onNext,
     onBack,
-    onSubmit
+    onSubmit,
+    resetForm
   } = useForm();
 
   const steps = [
@@ -73,7 +74,8 @@ function Form() {
 
                 <div className="w-48">
                   <ResetFormButton
-                    onReset={() => window.location.reload()}
+                    // onReset={() => window.location.reload()}
+                      onReset={resetForm}
                     className="w-full h-12 flex items-center justify-center bg-gray-200 text-gray-800 rounded-md shadow hover:bg-gray-300 transition"
                   />
                 </div>
